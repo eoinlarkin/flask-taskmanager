@@ -1,17 +1,43 @@
 {%extends "base.html" %}
 {% block content %} 
 
-<div class="text-blue-900 text-2xl text-center">
+<!--    Category Header -->
+<div class="text-blue-900 text-2xl text-center mt-8">
     Categories
 </div>
 
-<div class="flex justify-center">
+<!--    Add Category Button -->
+<div class="flex justify-center mt-8">
 
     <a href="{{ url_for('add_category') }}">                
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Add Category
         </button>
     </a>
+</div>
+
+<!--    Category Card -->
+
+<div class="flex flex-wrap justify-center mt-8 space-x-1">   
+    {% for category in categories %}
+    <div class="p-6 max-w-sm mt-8 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <a href="#">
+            <h5 class="mb-2 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white">{{ category.category_name }}</h5>
+        </a>
+
+        <!-- Card content -->
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><!-- Card content goes here --></p>
+        <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Edit
+            </a>
+
+        <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Delete
+            </a>
+
+    </div>
+    {% endfor %}
+
 
 </div>
 {% endblock %}
