@@ -18,7 +18,7 @@ if os.environ.get("DEVELOPMENT") == True: # working with local database
 else:
     uri = os.environ.get("DATABASE_URL")
     if uri.startswith("postgres://"):
-        uri = uri.replace("postgres://, postgresql://",1)
+        uri = uri.replace("postgres://", "postgresql://",1)
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 
 # setting SQL Alchemy database to the instance of our Flask app
