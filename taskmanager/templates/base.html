@@ -7,7 +7,12 @@
     <title>Task Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
-    <script src="https://unpkg.com/flowbite@1.4.4/dist/flowbite.js"></script>
+    
+    <!-- Flowbite javascript file -->
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.5/dist/flowbite.min.css" />
+    
+    <!-- Date Picker javascript file -->
+
 </head>
 <body>
 
@@ -36,12 +41,14 @@
 
               <!-- New Task -->
               <li>
-                <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">New Task</a>
+                <a href="{{ url_for('add_task') }}" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                  New Task</a>
               </li>
 
               <!-- Categories -->              
               <li>
-                <a href="{{ url_for('categories') }}" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Categories</a>
+                <a href="{{ url_for('categories') }}" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                  Categories</a>
               </li>
 
             </ul>
@@ -75,6 +82,7 @@
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="https://unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script>
+    <script src="https://unpkg.com/flowbite@1.4.5/dist/datepicker.js"></script>
 
 </body>
 </html>

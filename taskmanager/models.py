@@ -1,3 +1,9 @@
+# Before we can use the models below, it's necessary to migrate the models
+# into the psql database.  can be achieved as follows
+# python3 
+# from taskmanager import db
+# db.create_all()
+
 from taskmanager import db
 
 class Category(db.Model):
@@ -10,16 +16,15 @@ class Category(db.Model):
 
     def __repr__(self):
         # __repr__ to represent itself in the form of a string
-        return self
+        return self.category_name
 
 class Task(db.Model):
     # schmea for the Task model:
     id = db.Column(db.Integer, primary_key = True)
-
     task_name = db.Column(db.String(50), unique=True, nullable=False)
     task_description = db.Column(db.Text, nullable=False)
     is_urgent = db.Column(db.Boolean, default=False, nullable=False) 
-    dub_date = db.Column(db.Date, nullable=False)
+    due_date = db.Column(db.Date, nullable=False)
 
     # linking the tables on the category_id foreign key
     # the ondelete makes sure that when we delete the category, the underlying taskes are also deleted
