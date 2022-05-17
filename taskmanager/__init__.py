@@ -1,4 +1,5 @@
 import os
+import re
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
@@ -15,12 +16,12 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 if os.environ.get("DEVELOPMENT") == True: # working with local database
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URL")
 else:
+    uri = os.environ.get("DATABASE_URL")
+    if uri.startswith("postgres://"):
+        uri = uri.replace("postgres://, postgresql://",1)
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
-
-
 
 # setting SQL Alchemy database to the instance of our Flask app
 db = SQLAlchemy(app)
 
 from taskmanager import routes
-16
