@@ -1,0 +1,71 @@
+{%extends "base.html" %}
+{% block content %} 
+
+
+
+<div class="text-blue-900 text-2xl text-center  mt-8">
+    Add Task
+</div>
+
+
+
+<form method="POST" action="{{ url_for('edit_task', task_id=task.id) }}" >
+    
+    <!--  Task Name   -->
+    <div class="mb-6">
+      <label for="task_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Task Name</label>
+      <input name="task_name" type="text" id="task_name" value="{{task.task_name}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Task name" minlength="5" maxlength="50" required>
+    </div>
+
+    <!--  Task Description   -->
+    <div class="mb-6">
+      <label for="task_description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Task Name</label>
+      <textarea name="task_description" type="text" id="task_description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Task Description" minlength="5" maxlength="200" required>
+        {{- task.task_description -}}
+      </textarea>
+    </div>
+
+    <!--  Due Date   -->
+    <div class='mb-6'> 
+    <label for="due_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Due Date</label>
+    <div class="relative">
+      <!-- SVG Icon for calendar -->
+      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+      </div>
+      <!-- Date Picker -->
+      <input datepicker value="{{ task.due_date.strftime('%d/%B/% Y') }}" name="due_date" id="due_date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" datepicker-format="dd/mm/yyyy" required>
+    </div>
+  </div>
+   
+    <!--  Task Urgent   -->
+    <div class="mb-6">
+      <label for="is_urgent" class="inline-flex relative items-center cursor-pointer">
+        {% if task.is_urgent == True %}
+        <input type="checkbox" value="" id="is_urgent" class="sr-only peer" checked>
+        {% else %}
+        <input type="checkbox" value="" id="is_urgent" class="sr-only peer">
+        {% endif %}
+        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+        <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Urgent</span>
+      </label> 
+    </div>
+
+    <!--  Category ID   -->
+    <div class="mb-6">
+      <label for="category_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select task category</label>
+      <select id="category_id" name="category_id" 
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+        <option selected>Choose a task category</option>
+        {% for category in categories %}
+          <option value="{{ category.id }}">{{ category.category_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+
+    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Task</button>
+</form>
+
+
+{% endblock %}
